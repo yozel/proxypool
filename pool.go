@@ -158,6 +158,8 @@ func (p *Pool) Do(req *http.Request) (*http.Response, error) {
 		}
 		if i+1 > 1 {
 			log.Printf("retry #%d with agent %s", i+1, a.Info().Name)
+		} else {
+			log.Printf("try #%d with agent %s", i+1, a.Info().Name)
 		}
 		res, err := a.Do(factory())
 		if errors.Is(err, context.Canceled) {
